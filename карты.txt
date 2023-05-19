@@ -1,0 +1,17 @@
+49 игровых карточек + 1 инструкция
+1-9
+2-8
+3-8
+4-8
+5-8
+6-8
+
+<!-- <img id="0000" src="gpeg\jacket_0000.jpg"  alt="0" width="">
+<img id="0001" src="gpeg\Cards_0001.jpg"  alt="1" width="">
+<img id="0002" src="gpeg\Cards_0002.jpg"  alt="2" width="">
+<img id="0003" src="gpeg\Cards_0003.jpg"  alt="3" width="">
+<img id="0004" src="gpeg\Cards_0004.jpg"  alt="4" width="">
+<img id="0005" src="gpeg\Cards_0005.jpg"  alt="5" width="">
+<img id="0006" src="gpeg\Cards_0006.jpg"  alt="6" width="">
+<img id="0007" src="gpeg\Name.jpg"  alt="NameGems" width="150px">
+<img id="0008" src="gpeg\Rules.jpg"  alt="Rules" width="150px">  -->
