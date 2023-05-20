@@ -1,8 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-  <title>Card Game</title>
+  <!-- Стандарт -->
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Русский.яз -->
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="charset" content="windws-1251">
+  <!-- Оконо над ссылкой  -->
+  <title>Card Game GMS</title>
   <link rel="stylesheet" href="style.css">
+  
  </head>
 
 
@@ -16,15 +24,15 @@
     </div>
     <div id="player2" class="player">
       <h2>Player 2</h2>
-       <p id="player1CardCount"></p>
+       <p id="player2CardCount"></p>
       <div id="player2Deck" class="deck"></div>
       <div id="player2Card" class="card"></div>
     </div>
     <div id="result"></div>
-    <button id="playButton">Play!</button>
-    <button id="reloadButton">Reload</button>
+    <button id="playButton">Play! Играть!</button>
+    <button id="reloadButton">Reload Перезагрузить</button>
   </div>
-
+  <!-- Подключение js, именно здесь для слушателя событий -->
   <script src="script.js"></script>
 </body>
 </html>

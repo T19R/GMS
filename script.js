@@ -1,16 +1,16 @@
-// Cards in ascending order of strength
+// Cards in ascending order of strength Карты в порядке возрастания силы
 const cards = [
-    "Monkey", "Monkey", "Monkey", "Monkey", "Monkey", "Monkey", "Monkey", "Monkey",
-    "Rhinoceros", "Rhinoceros", "Rhinoceros", "Rhinoceros", "Rhinoceros", "Rhinoceros", "Rhinoceros", "Rhinoceros",
-    "Crocodile", "Crocodile", "Crocodile", "Crocodile", "Crocodile", "Crocodile", "Crocodile", "Crocodile",
-    "Tiger", "Tiger", "Tiger", "Tiger", "Tiger", "Tiger", "Tiger", "Tiger",
-    "Lion", "Lion", "Lion", "Lion", "Lion", "Lion", "Lion", "Lion",
-    "Elephant", "Elephant", "Elephant", "Elephant", "Elephant", "Elephant", "Elephant", "Elephant"
+    "Мартышка 1", "Мартышка 1", "Мартышка 1", "Мартышка 1", "Мартышка 1", "Мартышка 1", "Мартышка 1", "Мартышка 1", "Мартышка 1",  
+    "Носорог 2", "Носорог 2", "Носорог 2", "Носорог 2", "Носорог 2", "Носорог 2", "Носорог 2", "Носорог 2",
+    "Крокодил 3", "Крокодил 3", "Крокодил 3", "Крокодил 3", "Крокодил 3", "Крокодил 3", "Крокодил 3", "Крокодил 3",
+    "Тигр 4", "Тигр 4", "Тигр 4", "Тигр 4", "Тигр 4", "Тигр 4", "Тигр 4", "Тигр 4",
+    "Лев 5", "Лев 5", "Лев 5", "Лев 5", "Лев 5", "Лев 5", "Лев 5", "Лев 5",
+    "Слон 6", "Слон 6", "Слон 6", "Слон 6", "Слон 6", "Слон 6",  "Слон 6", "Слон 6"
   ];
 
-  
+console.log(cards.length); //Console output of array length Вывод консоль длины массива
 
-// Get HTML elements
+// Get HTML elements Получить HTML-элементы
 const playButton = document.getElementById("playButton");
 const player1Deck = document.getElementById("player1Deck");
 const player2Deck = document.getElementById("player2Deck");
@@ -18,18 +18,21 @@ const player1Card = document.getElementById("player1Card");
 const player2Card = document.getElementById("player2Card");
 const resultDiv = document.getElementById("result");
 const player1CardCount = document.getElementById("player1CardCount");
-// Initialize players and their decks
+const player2CardCount = document.getElementById("player2CardCount");
+
+
+// Initialize players and their decks  Инициализировать игроков и их колоды
 const player1 = {
-  name: "Player 1",
+  name: "Player 1 Игрок 1",
   deck: [],
 };
 
 const player2 = {
-  name: "Player 2",
+  name: "Player 2 Игрок 2",
   deck: [],
 };
 
-// Deal cards to players
+// Deal cards to players Раздайте карты игрокам
 function dealCards() {
     const shuffledCards = shuffle(cards.slice());
   
@@ -44,7 +47,7 @@ function dealCards() {
 
   
 
-// Compare cards and determine the winner
+// Compare cards and determine the winner Сравните карты и определите победителя
 function compareCards() {
   const card1 = player1.deck.shift();
   const card2 = player2.deck.shift();
@@ -57,18 +60,20 @@ function compareCards() {
 
   if (card1Index > card2Index) {
     player1.deck.push(card1, card2);
-    resultDiv.textContent = player1.name + " wins the round!";
+    resultDiv.textContent = player1.name + " wins the round! выигрывает раунд!";
   } else if (card1Index < card2Index) {
     player2.deck.push(card1, card2);
-    resultDiv.textContent = player2.name + " wins the round!";
+    resultDiv.textContent = player2.name + " wins the round! выигрывает раунд!";
   } else {
-    resultDiv.textContent = "It's a tie! Starting an argument...";
+    resultDiv.textContent = "It's a tie! Starting an argument... Начало спора...";
     startArgument(card1, card2);
   }
+  //отоброжает массив 
   player1CardCount.textContent = `Cards: ${player1.deck.length}`;
+  player2CardCount.textContent = `Карты: ${player2.deck.length}`;
 }
 
-// Handle argument when cards have the same strength
+// Handle argument when cards have the same strength Обрабатывать спор, когда карты имеют одинаковую силу
 function startArgument(card1, card2) {
   const argumentCards = [card1, card2];
 
@@ -96,7 +101,7 @@ function startArgument(card1, card2) {
   }
 }
 
-// Check if a player has won the game
+// Check if a player has won the game Проверяем, выиграл ли игрок игру
 function checkGameEnd() {
   if (player1.deck.length === cards.length) {
     resultDiv.textContent = player1.name + " has won the game!";
@@ -109,7 +114,7 @@ function checkGameEnd() {
   }
 }
 
-// Shuffle function to randomize array elements
+// Shuffle function to randomize array elements Функция Shuffle для рандомизации элементов массива
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -118,11 +123,11 @@ function shuffle(array) {
   return array;
 }
 
-// Event listener for the play button
+// Event listener for the play button Слушатель событий для кнопки воспроизведения
 playButton.addEventListener("click", () => {
   compareCards();
   checkGameEnd();
 });
 
-// Start the game
+// Start the game Начало игры
 dealCards();
