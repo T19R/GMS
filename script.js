@@ -9,9 +9,10 @@ const cards = [
   ];
 
 console.log(cards.length); //Console output of array length Вывод консоль длины массива
-
+ //disabled reloadButton
 // Get HTML elements Получить HTML-элементы
 const playButton = document.getElementById("playButton");
+const reloadButton = document.getElementById("reloadButton");
 const player1Deck = document.getElementById("player1Deck");
 const player2Deck = document.getElementById("player2Deck");
 const player1Card = document.getElementById("player1Card");
@@ -21,14 +22,16 @@ const player1CardCount = document.getElementById("player1CardCount");
 const player2CardCount = document.getElementById("player2CardCount");
 
 
+
+
 // Initialize players and their decks  Инициализировать игроков и их колоды
 const player1 = {
-  name: "Player 1 Игрок 1",
+  name: "Игрок 1",
   deck: [],
 };
 
 const player2 = {
-  name: "Player 2 Игрок 2",
+  name: "Игрок 2",
   deck: [],
 };
 
@@ -60,16 +63,16 @@ function compareCards() {
 
   if (card1Index > card2Index) {
     player1.deck.push(card1, card2);
-    resultDiv.textContent = player1.name + " wins the round! выигрывает раунд!";
+    resultDiv.textContent = player1.name + "  выигрывает раунд!";
   } else if (card1Index < card2Index) {
     player2.deck.push(card1, card2);
-    resultDiv.textContent = player2.name + " wins the round! выигрывает раунд!";
+    resultDiv.textContent = player2.name + " выигрывает раунд!";
   } else {
-    resultDiv.textContent = "It's a tie! Starting an argument... Начало спора...";
+    resultDiv.textContent = "Одинаковые карты! Начало спора...";
     startArgument(card1, card2);
   }
   //отоброжает массив 
-  player1CardCount.textContent = `Cards: ${player1.deck.length}`;
+  player1CardCount.textContent = `Карты: ${player1.deck.length}`;
   player2CardCount.textContent = `Карты: ${player2.deck.length}`;
 }
 
@@ -91,11 +94,11 @@ function startArgument(card1, card2) {
 
     if (additionalCard1Index > additionalCard2Index) {
       player1.deck.push(...argumentCards);
-      resultDiv.textContent = player1.name + " wins the argument!";
+      resultDiv.textContent = player1.name + " выигрывает спор!";
       break;
     } else if (additionalCard1Index < additionalCard2Index) {
       player2.deck.push(...argumentCards);
-      resultDiv.textContent = player2.name + " wins the argument!";
+      resultDiv.textContent = player2.name + " выигрывает спор!";
       break;
     }
   }
@@ -104,13 +107,13 @@ function startArgument(card1, card2) {
 // Check if a player has won the game Проверяем, выиграл ли игрок игру
 function checkGameEnd() {
   if (player1.deck.length === cards.length) {
-    resultDiv.textContent = player1.name + " has won the game!";
+    resultDiv.textContent = player1.name + " выиграл игру! ";
     playButton.disabled = true;
   } else if (player2.deck.length === cards.length) {
-    resultDiv.textContent = player2.name + " has won the game!";
+    resultDiv.textContent = player2.name + " выиграл игру! ";
     playButton.disabled = true;
   } else {
-    resultDiv.textContent = "Continuing the game...";
+    resultDiv.textContent = "Продолжаем игру...";
   }
 }
 
@@ -128,6 +131,16 @@ playButton.addEventListener("click", () => {
   compareCards();
   checkGameEnd();
 });
+function restart(){
+  if (player1.deck.length === cards.length){}
+  else if(player2.deck.length === cards.length){}
+}
+
 
 // Start the game Начало игры
 dealCards();
+
+// Add event listener for reload button Слушатель событий для кнопки перезагрузки
+reloadButton.addEventListener("click", () => {
+location.reload();
+});
