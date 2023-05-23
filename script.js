@@ -1,3 +1,4 @@
+
 // Cards in ascending order of strength Карты в порядке возрастания силы
 const cards = [
     "Мартышка 1", "Мартышка 1", "Мартышка 1", "Мартышка 1", "Мартышка 1", "Мартышка 1", "Мартышка 1", "Мартышка 1", "Мартышка 1",  
@@ -8,8 +9,11 @@ const cards = [
     "Слон 6", "Слон 6", "Слон 6", "Слон 6", "Слон 6", "Слон 6",  "Слон 6", "Слон 6"
   ];
 
+
+
 console.log(cards.length); //Console output of array length Вывод консоль длины массива
  //disabled reloadButton
+
 // Get HTML elements Получить HTML-элементы
 const playButton = document.getElementById("playButton");
 const reloadButton = document.getElementById("reloadButton");
@@ -135,6 +139,40 @@ function restart(){
   if (player1.deck.length === cards.length){}
   else if(player2.deck.length === cards.length){}
 }
+
+
+// // Disable the play button until cards are dealt
+// // Отключаем кнопку воспроизведения, пока карты не сдадутся
+// playButton.disabled = true;
+
+// // Load card images for player 1 and player 2 based on array output
+// // Загрузка картинок карт для Игрока 1 и Игрока 2 в зависимости от вывода массива
+// const cardsImages = {
+// "Мартышка 1": "/gpeg/monkey1.jpg",
+// "Носорог 2": "/gpeg/rhino2.jpg",
+// "Крокодил 3": "/gpeg/crocodile3.jpg",
+// "Тигр 4": "/gpeg/tiger4.jpg",
+// "Лев 5": "/gpeg/lion5.jpg",
+// "Слон 6": "/gpeg/elephant6.jpg"
+// };
+
+// function loadCardImages() {
+// const player1CardImg = document.createElement("img");
+// player1CardImg.src = images/$(cardsImages[player1.deck[0]]);
+// player1Card.appendChild(player1CardImg);
+
+// const player2CardImg = document.createElement("img");
+// player2CardImg.src = images/$(cardsImages[player2.deck[0]]);
+// player2Card.appendChild(player2CardImg);
+// }
+
+// loadCardImages();
+
+// // Enable the play button once cards are dealt
+// // Включаем кнопку воспроизведения после того, как карты сдадутся
+// playButton.disabled = false;
+
+
 
 
 // Start the game Начало игры
