@@ -1,14 +1,52 @@
 
 // Cards in ascending order of strength Карты в порядке возрастания силы
 const cards = [
-    "Мартышка 1", "Мартышка 1", "Мартышка 1", "Мартышка 1", "Мартышка 1", "Мартышка 1", "Мартышка 1", "Мартышка 1", "Мартышка 1",  
-    "Носорог 2", "Носорог 2", "Носорог 2", "Носорог 2", "Носорог 2", "Носорог 2", "Носорог 2", "Носорог 2",
-    "Крокодил 3", "Крокодил 3", "Крокодил 3", "Крокодил 3", "Крокодил 3", "Крокодил 3", "Крокодил 3", "Крокодил 3",
-    "Тигр 4", "Тигр 4", "Тигр 4", "Тигр 4", "Тигр 4", "Тигр 4", "Тигр 4", "Тигр 4",
-    "Лев 5", "Лев 5", "Лев 5", "Лев 5", "Лев 5", "Лев 5", "Лев 5", "Лев 5",
-    "Слон 6", "Слон 6", "Слон 6", "Слон 6", "Слон 6", "Слон 6",  "Слон 6", "Слон 6"
-  ];
+  "Мартышка 1", "Мартышка 1", "Мартышка 1", "Мартышка 1", "Мартышка 1", "Мартышка 1", "Мартышка 1", "Мартышка 1", "Мартышка 1",  
+  "Носорог 2", "Носорог 2", "Носорог 2", "Носорог 2", "Носорог 2", "Носорог 2", "Носорог 2", "Носорог 2",
+  "Крокодил 3", "Крокодил 3", "Крокодил 3", "Крокодил 3", "Крокодил 3", "Крокодил 3", "Крокодил 3", "Крокодил 3",
+  "Тигр 4", "Тигр 4", "Тигр 4", "Тигр 4", "Тигр 4", "Тигр 4", "Тигр 4", "Тигр 4",
+  "Лев 5", "Лев 5", "Лев 5", "Лев 5", "Лев 5", "Лев 5", "Лев 5", "Лев 5",
+  "Слон 6", "Слон 6", "Слон 6", "Слон 6", "Слон 6", "Слон 6",  "Слон 6", "Слон 6"
+];
 
+// ...
+
+// Compare cards and determine the winner
+function compareCards() {
+  const card1 = player1.deck.shift();
+  const card2 = player2.deck.shift();
+
+  player1Card.textContent = card1;
+  player2Card.textContent = card2;
+
+  const card1Index = cards.indexOf(card1);
+  const card2Index = cards.indexOf(card2);
+
+  player1Card.className = "card " + getCardClass(card1);
+  player2Card.className = "card " + getCardClass(card2);
+
+  // ...
+}
+
+// Get CSS class based on card type
+function getCardClass(card) {
+  switch (card) {
+    case "Мартышка 1":
+      return "monkey";
+    case "Носорог 2":
+      return "rhino";
+    case "Крокодил 3":
+      return "crocodile";
+    case "Тигр 4":
+      return "tiger";
+    case "Лев 5":
+      return "lion";
+    case "Слон 6":
+      return "elephant";
+    default:
+      return "";
+  }
+}
 
 
 console.log(cards.length); //Console output of array length Вывод консоль длины массива
@@ -40,21 +78,41 @@ const player2 = {
 };
 
 // Deal cards to players Раздайте карты игрокам
+// Deal cards to players
 function dealCards() {
-    const shuffledCards = shuffle(cards.slice());
-  
-    for (let i = 0; i < shuffledCards.length; i++) {
-      if (i % 2 === 0) {
+  const shuffledCards = shuffle(cards.slice());
+
+  for (let i = 0; i < shuffledCards.length; i++) {
+    if (i % 2 === 0) {
+      if (player1.deck.length < cards.length / 2) {
         player1.deck.push(shuffledCards[i]);
-      } else {
+      }
+    } else {
+      if (player2.deck.length < cards.length / 2) {
         player2.deck.push(shuffledCards[i]);
       }
     }
   }
+}
+
+// ...
+
+// Compare cards and determine the winner
+function compareCards() {
+  if (player1.deck.length === 0 || player2.deck.length === 0) {
+    return;
+  }
+
+  const card1 = player1.deck.shift();
+  const card2 = player2.deck.shift();
+
+  // Remaining code...
+}
 
   
 
 // Compare cards and determine the winner Сравните карты и определите победителя
+
 function compareCards() {
   const card1 = player1.deck.shift();
   const card2 = player2.deck.shift();
@@ -64,6 +122,46 @@ function compareCards() {
 
   const card1Index = cards.indexOf(card1);
   const card2Index = cards.indexOf(card2);
+
+  player1Card.className = "card " + getCardClass(card1);
+  player2Card.className = "card " + getCardClass(card2);
+
+  if (card1Index > card2Index) {
+    player1.deck.push(card1, card2);
+    resultDiv.textContent = player1.name + " выигрывает раунд!";
+  } else if (card1Index < card2Index) {
+    player2.deck.push(card1, card2);
+    resultDiv.textContent = player2.name + " выигрывает раунд!";
+  } else {
+    player1Card.className += " disputed";
+    player2Card.className += " disputed";
+    resultDiv.textContent = "Одинаковые карты! Начало спора...";
+    startArgument(card1, card2);
+  }
+
+  player1CardCount.textContent = "Карты: " + player1.deck.length;
+  player2CardCount.textContent = "Карты: " + player2.deck.length;
+}
+
+
+// Get CSS class based on card type
+function getCardClass(card) {
+  switch (card) {
+    case "Мартышка 1":
+      return "monkey";
+    case "Носорог 2":
+      return "rhino";
+    case "Крокодил 3":
+      return "crocodile";
+    case "Тигр 4":
+      return "tiger";
+    case "Лев 5":
+      return "lion";
+    case "Слон 6":
+      return "elephant";
+    default:
+      return "";
+  }
 
   if (card1Index > card2Index) {
     player1.deck.push(card1, card2);
@@ -81,12 +179,17 @@ function compareCards() {
 }
 
 // Handle argument when cards have the same strength Обрабатывать спор, когда карты имеют одинаковую силу
+// Handle argument when cards have the same strength
 function startArgument(card1, card2) {
   const argumentCards = [card1, card2];
 
   while (true) {
     const additionalCard1 = player1.deck.shift();
     const additionalCard2 = player2.deck.shift();
+
+    if (!additionalCard1 || !additionalCard2) {
+      break;
+    }
 
     argumentCards.push(additionalCard1, additionalCard2);
 
@@ -108,18 +211,23 @@ function startArgument(card1, card2) {
   }
 }
 
+
+
+
 // Check if a player has won the game Проверяем, выиграл ли игрок игру
 function checkGameEnd() {
   if (player1.deck.length === cards.length) {
-    resultDiv.textContent = player1.name + " выиграл игру! ";
+    resultDiv.textContent = player1.name + " выиграл игру!";
     playButton.disabled = true;
   } else if (player2.deck.length === cards.length) {
-    resultDiv.textContent = player2.name + " выиграл игру! ";
+    resultDiv.textContent = player2.name + " выиграл игру!";
     playButton.disabled = true;
   } else {
     resultDiv.textContent = "Продолжаем игру...";
   }
 }
+
+
 
 // Shuffle function to randomize array elements Функция Shuffle для рандомизации элементов массива
 function shuffle(array) {
@@ -140,37 +248,6 @@ function restart(){
   else if(player2.deck.length === cards.length){}
 }
 
-
-// // Disable the play button until cards are dealt
-// // Отключаем кнопку воспроизведения, пока карты не сдадутся
-// playButton.disabled = true;
-
-// // Load card images for player 1 and player 2 based on array output
-// // Загрузка картинок карт для Игрока 1 и Игрока 2 в зависимости от вывода массива
-// const cardsImages = {
-// "Мартышка 1": "/gpeg/monkey1.jpg",
-// "Носорог 2": "/gpeg/rhino2.jpg",
-// "Крокодил 3": "/gpeg/crocodile3.jpg",
-// "Тигр 4": "/gpeg/tiger4.jpg",
-// "Лев 5": "/gpeg/lion5.jpg",
-// "Слон 6": "/gpeg/elephant6.jpg"
-// };
-
-// function loadCardImages() {
-// const player1CardImg = document.createElement("img");
-// player1CardImg.src = images/$(cardsImages[player1.deck[0]]);
-// player1Card.appendChild(player1CardImg);
-
-// const player2CardImg = document.createElement("img");
-// player2CardImg.src = images/$(cardsImages[player2.deck[0]]);
-// player2Card.appendChild(player2CardImg);
-// }
-
-// loadCardImages();
-
-// // Enable the play button once cards are dealt
-// // Включаем кнопку воспроизведения после того, как карты сдадутся
-// playButton.disabled = false;
 
 
 

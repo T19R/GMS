@@ -20,7 +20,10 @@
   width: 100px;
   height: 150px;
   margin-bottom: 10px;
+  background-size: cover;
+  background-position: center;
 }
+
 
 #result {
   font-size: 24px;
@@ -33,3 +36,35 @@
   font-size: 18px;
   padding: 10px 20px;
 }
+
+.disputed {
+  background-color: yellow;
+}
+
+
+
+.monkey {
+  background-image: url('gpeg/monkey1.jpg');
+}
+
+.rhino {
+  background-image: url('gpeg/rhino2.jpg');
+}
+
+.crocodile {
+  background-image: url('gpeg/crocodile3.jpg');
+}
+
+.tiger {
+  background-image: url('gpeg/tiger4.jpg');
+}
+
+.lion {
+  background-image: url('gpeg/lion5.jpg');
+}
+
+.elephant {
+  background-image: url('gpeg/elephant6.jpg'); 
+}
+
+
